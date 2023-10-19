@@ -1,8 +1,9 @@
-import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
 
 public class GerenciadorTarefas {
     private ArrayList<String> tarefas = new ArrayList<String >();
@@ -25,8 +26,17 @@ public class GerenciadorTarefas {
                 case 1:
                     adicionarTarefa();
                     break;
-
+                case 2:
+                    listarTarefa();
+                    break;
+                case 3:
+                    removerTarefa();
+                    break;
+                case 4:
+                    break;
             }
+
+
 
         }
     }
@@ -36,5 +46,47 @@ public class GerenciadorTarefas {
         String novaTarefa = scanner.nextLine();
         tarefas.add(novaTarefa);
         System.out.println("Tarefa adicionada com êxito.");
+
     }
+
+    private void listarTarefa(){
+        System.out.println("++++++++++++++++++++++++");
+        System.out.println("Lista Tarefas: ");
+        if(tarefas.size() == 0 ){
+            System.out.println("Lista de tarefas vazia.");
+        }
+        else{
+        for (int i =0 ; i<tarefas.size() ; i++){
+            System.out.println(i+" - "+tarefas.get(i));
+
+        }}
+        System.out.println("++++++++++++++++++++++++");
+
+    }
+
+    private void removerTarefa(){
+        listarTarefa();
+        int c =0;
+        if(tarefas.size() ==0 ){
+            System.out.println("Nao podemos deletar, a lista de tarefa esta vazia.");
+        }
+        else {
+            while (true) {
+                System.out.println("Digite o numero da tarefa que voce deseja excluir: ");
+                Scanner scanner = new Scanner(System.in);
+                c = scanner.nextInt();
+
+                if (c >= tarefas.size() || c < 0) {
+                    System.out.println("Numero da tarefa invalida. Tenta de novo.");
+                    continue;
+                }
+                tarefas.remove(c);
+                break;
+            }
+            System.out.println("Tarefa n " + c + " removida com sucesso");
+        }
+
+
+    }
+
 }
